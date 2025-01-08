@@ -13,10 +13,6 @@ protocol DataRepositoryProtocol {
 
 extension DataRepositoryProtocol {
     func getData() throws -> [StarCard]{
-        guard let url = Bundle.main.url(forResource: "starwars", withExtension: "json") else {
-            return []
-        }
-      
         let data = try Data(contentsOf: url )
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -25,10 +21,10 @@ extension DataRepositoryProtocol {
 }
 
 struct DataRepository: DataRepositoryProtocol {
-    var url: URL = Bundle.main.url(forResource: "Starwars", withExtension: "json")!
+    var url: URL = Bundle.main.url(forResource: "StarWars", withExtension: "json")!
 }
 
 
-struct StarWarsDemoTests: DataRepositoryProtocol {
-    var url: URL =  Bundle.main.url(forResource: "Starwars Test", withExtension: "json")!
+struct StarWarsDemoRepositoryTests: DataRepositoryProtocol {
+    var url: URL =  Bundle.main.url(forResource: "StarWars Test", withExtension: "json")!
 }
